@@ -1,0 +1,28 @@
+/* menghilangkan garis bawah pada link */
+.no-link {
+    text-decoration: none;
+}
+.same-line-title {
+  line-height: 1.2em;
+  height: 4.6em;       /* height is 2x line-height, so two lines will display */
+  overflow: hidden;
+}
+.same-line-body {
+  line-height: 1em;
+  height: 5.1em;       /* height is 2x line-height, so two lines will display */
+  overflow: hidden;
+}
+.text-justify {
+  text-align: justify;
+}
+/* Menghilangkan panah pada input type number */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input.transparent-input{
+  background-color:transparent !important;
+  border:none !important;
+}
