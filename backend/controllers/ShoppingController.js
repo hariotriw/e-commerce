@@ -644,6 +644,9 @@ class ShoppingController {
                         include: [{
                             model: Product,
                             foreignKey: 'ProductId',
+                            include: [{
+                                model: ProductImage,
+                            }]
                         },{
                             model: Order,
                             foreignKey: 'OrderName',
@@ -745,6 +748,9 @@ class ShoppingController {
                         include: [{
                             model: Product,
                             foreignKey: 'ProductId',
+                            include: [{
+                                model: ProductImage,
+                            }]
                         }]
                     }],
                     where: {

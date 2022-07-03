@@ -3,3 +3,4 @@ package-lock.json
 .env
 app - Codibook.js
 app-copy.js
+/public/images

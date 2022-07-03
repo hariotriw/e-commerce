@@ -143,7 +143,8 @@ const UserCart = () => {
                                                                     <tr key={lite.id}>
                                                                         <td>{i+1}</td>
                                                                         <td>{lite ? lite.Product.name : 'nama barang'}</td>
-                                                                        <td>{lite ? 'https://via.placeholder.com/150' : 'gambar barang'}</td>
+                                                                        <td>{lite ? lite.Product.ProductImages.length !== 0 ? <img src={`${lite.Product.ProductImages[0].filename}` } className="img-fluid p-0" alt="..."/> 
+                                                                            : 'produk tidak mempunyai gambar' : 'https://via.placeholder.com/150'}</td>
                                                                         <td>{lite ? lite.Product.desc : 'deskripsi barang'}</td>
                                                                         <td>{lite ? lite.Product.condition : 'kondisi barang'}</td>
                                                                         <td>{lite ? lite.quantity : 'jumlah barang'}</td>
