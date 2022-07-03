@@ -57,16 +57,17 @@ class AdminController {
             const role = verifyToken.role
             // console.log(req.body);
             if(role === "admin"){
+                // console.log(req.body)
                 // let { name, desc, price, stock, expire, weight, category, brand, condition} = req.body;
-                let name = req.body.name || ' '
-                let desc = req.body.desc || ' '
-                let price = req.body.price || 0
-                let stock = req.body.stock || 0
-                let expire = req.body.expire || null
-                let weight = req.body.weight || 0
-                let category = req.body.category || 'no-category'
-                let brand = req.body.brand || ' '
-                let condition = req.body.condition || ' '
+                let name = req.body.dataForm.name || ' '
+                let desc = req.body.dataForm.desc || ' '
+                let price = req.body.dataForm.price || 0
+                let stock = req.body.dataForm.stock || 0
+                let expire = req.body.dataForm.expire || null
+                let weight = req.body.dataForm.weight || 0
+                let category = req.body.dataForm.category || 'no-category'
+                let brand = req.body.dataForm.brand || ' '
+                let condition = req.body.dataForm.condition || ' '
                 const total_sold = 0
                 const rating = 0
                 const views = 0
@@ -89,8 +90,61 @@ class AdminController {
                 })
     
                 // aray dari gambar yang ditambahin [NOT FINISHED]
+                let arrImg = req.body.resultFiles
+                // console.log(req.body.imageNames)
+                console.log(arrImg)
+                if(arrImg !== undefined){
+                    console.log('testing 1')
+                        console.log('testing 2')
+                        let id = product.id
+                        // let id = 1
+                        // console.log(arrImg.imageOne)
+                        if(arrImg.imageOne !== undefined){
+                            console.log('image 1 ada')
+                            ProductImage.create({
+                                filename: req.body.imageNames[0], 
+                                filesize: arrImg.imageOne[0].size, 
+                                filetype: arrImg.imageOne[0].mimetype, 
+                                primary: false, 
+                                ProductId:id
+                            })
+                        }
+                        if(arrImg.imageTwo !== undefined){
+                            console.log('image 2 ada')
+                            ProductImage.create({
+                                filename: req.body.imageNames[1], 
+                                filesize: arrImg.imageTwo[0].size, 
+                                filetype: arrImg.imageTwo[0].mimetype, 
+                                primary: false, 
+                                ProductId:id
+                            })
+                            
+                        }
+                        if(arrImg.imageThree !== undefined){
+                            console.log('image 3 ada')
+                            ProductImage.create({
+                                filename: req.body.imageNames[2], 
+                                filesize: arrImg.imageThree[0].size, 
+                                filetype: arrImg.imageThree[0].mimetype, 
+                                primary: false, 
+                                ProductId:id
+                            })
+                            
+                        }
+                        if(arrImg.imageFour !== undefined){
+                            console.log('image 4 ada')
+                            ProductImage.create({
+                                filename: req.body.imageNames[3], 
+                                filesize: arrImg.imageFour[0].size, 
+                                filetype: arrImg.imageFour[0].mimetype, 
+                                primary: false, 
+                                ProductId:id
+                            })
+
+                        }
+        
+                }
                 // let arrImgInput = []
-                // let arrImg = []
                 // arrImg.forEach((image, i) => {
                 //     let id = product.id
                 //     arrImg[i] = ProductImage.create({

@@ -39,6 +39,16 @@ const ProductLogin = ({ product, newArr, user, loginStatusResult }) => {
 	}
     // console.log(lite[0].ProductId);
 
+    useEffect(() => {
+		if(product){
+            console.log(product)
+            if(product.ProductImages.length !== 0){
+                setImage(product.ProductImages[0].filename)
+            }
+        }
+		
+	}, [product])
+
     // console.log(user)
     // console.log(newArr)
 

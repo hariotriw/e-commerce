@@ -74,9 +74,9 @@ const Navbar = () => {
                                     {/* ----- Admin ----- */}
                                     {/* <Link to="/admin/dashboard" className='nav-item nav-link active'>Dashboard</Link> */}
                                     {/* <Link to="/admin/profile" className='nav-item nav-link active'>Profile</Link> */}
-                                    <li class="nav-item dropdown">
-                                        <a class="nav-link active dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button">Seller Management</a>
-                                        <ul class="dropdown-menu">
+                                    <li className="nav-item dropdown">
+                                        <a className="nav-link active dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button">Seller Management</a>
+                                        <ul className="dropdown-menu">
                                             <li><Link to='admin/listproduct' className='dropdown-item'>Products</Link></li>
                                             <li><Link to='admin/listorder' className='dropdown-item'>Orders</Link></li>
                                         </ul>

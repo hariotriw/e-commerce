@@ -1,0 +1,37 @@
+Console Lists:
+    -Nintendo
+    -Playstation
+    -Xbox
+    -Sega
+    -Steam deck
+
+Video Games:
+    -PES
+    -Fifa
+    -Assassin Creed
+    -Battlefield
+    -Call of Duty
+
+Console Accessories:
+    -fan
+    -controller
+    -cable
+
+Bundles:
+
+Product parameters:
+name, desc, price, stock, expire, weight, category, brand, 
+condition, total_sold, ratings, views, UserId 
+
+
+Link:
+https://www.softwaretestinghelp.com/video-game-consoles/
+
+Switch:
+https://www.tokopedia.com/butikgames/nintendo-switch-console-neon-v2?src=topads
+
+Ps5:
+https://www.tokopedia.com/lbgm/ps-5-ps5-sony-playstation-5-disc-kaset-version-region-asia-sony-resmi-ind?extParam=ivf%3Dfalse%26src%3Dsearch
+
+Ps4:
+https://www.tokopedia.com/wijayasurabayagame/ps4-pro-1tb-garansi-1-tahun-mesin-aja-nohdd?src=topads

@@ -1,0 +1,62 @@
+[
+    {
+        "name": "Nintentdo Switch OLED",
+        "desc": "Nintendo switch console New Model V2 & OLED (model HAC-001(-01)). Paket & Kelengkapan : Nintendo Switch Console 1 unit, Nintendo Switch Dock 1 unit, Joy-Con (L) 1 unit, Joy-Con (R) 1 unit, Joy-Con Strap 2 unit, Joy-Con Grip 1 unit, High Speed HDMI Cable 1 unit, Nintendo Switch AC Adapter x1 ",
+        "price": 4100000,
+        "stock": 10,
+        "expire": "no expire",
+        "weight": 2300,
+        "category": "Console",
+        "brand": "Nintendo",
+        "condition": "baru",
+        "total_sold": 0,
+        "ratings": 0,
+        "views": 0,
+        "UserId": 1
+    },
+    {
+        "name": "Playstation 5",
+        "desc": "Media UHD Blu-ray, Blu-ray, DVD, digital distribution; CPU Custom 8-core AMD Zen 2; variable frequency, up to 3.5 GHz; Storage Custom 825 GB SSD; Removable storage Internal (user upgradeable) NVMe M.2 SSD, or external USB-based HDD; Display Video output formats HDMI: 720p, 1080i, 1080p, 4K UHD, 8K UHD; Graphics Custom AMD RDNA 2; 36 CUs @ variable frequency up to 2.23 GHz; Sound Custom Tempest Engine 3D Audio",
+        "price": 9300000,
+        "stock": 10,
+        "expire": "no expires",
+        "weight": 8000,
+        "category": "Console",
+        "brand": "Playstation",
+        "condition": "baru",
+        "total_sold": 0,
+        "ratings": 0,
+        "views": 0,
+        "UserId": 1
+    },
+    {
+        "name": "Playstation 4 Pro",
+        "desc": "1 x PS4 PRO ORIGINAL 1TB/1000GB; 1/2 x STICK PS4 ORIGINAL PABRIK; (Pilih Varian); 1 x KABEL USB Charger; 1 x KABEL POWER; 1 x KABEL HDMI; 1 x KARTU GARANSI; 1 x BUKU PANDUAN",
+        "price": 5400000,
+        "stock": 10,
+        "expire": "no expires",
+        "weight": 5000,
+        "category": "Console",
+        "brand": "Playstation",
+        "condition": "baru",
+        "total_sold": 0,
+        "ratings": 0,
+        "views": 0,
+        "UserId": 1
+    },
+    {
+        "name": "",
+        "desc": "",
+        "price": 0,
+        "stock": 0,
+        "expire": "",
+        "weight": 0,
+        "category": "",
+        "brand": "",
+        "condition": "",
+        "total_sold": 0,
+        "ratings": 0,
+        "views": 0,
+        "UserId": 1
+    }
+]

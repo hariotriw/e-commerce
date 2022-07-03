@@ -2,6 +2,7 @@ import axios from "axios";
 
 export const ADMIN_GET_ALL_PRODUCT = "ADMIN_GET_ALL_PRODUCT"
 export const ADMIN_ADD_PRODUCT = "ADMIN_ADD_PRODUCT"
+export const ADMIN_UPLOAD_PRODIM = "ADMIN_UPLOAD_PRODIM"
 export const ADMIN_EDIT_PRODUCT = "ADMIN_EDIT_PRODUCT"
 export const ADMIN_GET_PRODUCT = "ADMIN_GET_PRODUCT"
 export const ADMIN_GET_ALL_ORDER = "ADMIN_GET_ALL_ORDER"
@@ -105,6 +106,64 @@ export const adminAddProduct = (formData) => {
                 // gagal get API
                 dispatch({
                     type: ADMIN_ADD_PRODUCT,
+                    payload: {
+                        loading: false,
+                        data: false,
+                        errorMessage: errorResponse
+                    }
+                })
+            })
+
+    }
+
+}
+
+// adminUploadProdim => admin upload product image
+export const adminUploadProdim = (formData) => {
+    return (dispatch) => {
+
+        // loading
+        dispatch({
+            type: ADMIN_UPLOAD_PRODIM,
+            payload: {
+                loading: true,
+                data: false,
+                errorMessage: false
+            }
+        })
+        const access_token = localStorage.getItem('access_token')
+        console.log(formData);
+        // get API
+        axios({
+            method: 'POST',
+            url: 'http://localhost:3001/api/upload/prodimg',
+            timeout: 120000,
+            headers: { 'access-token': access_token},
+            data: formData
+        })
+            .then((response) => {
+                // berhasil get API
+                console.log('berhasil menambah data');
+                dispatch({
+                    type: ADMIN_UPLOAD_PRODIM,
+                    payload: {
+                        loading: false,
+                        data: response,
+                        errorMessage: false
+                    }
+                })
+            })
+            .catch((response) => {
+                console.log('gagal menambah data');
+                console.log(response);
+                let errorResponse = {
+                    isError: true,
+                    status: response.response.status,
+                    message: response.response.data
+                }
+                // gagal get API
+                dispatch({
+                    type: ADMIN_UPLOAD_PRODIM,
                     payload: {
                         loading: false,
                         data: false,

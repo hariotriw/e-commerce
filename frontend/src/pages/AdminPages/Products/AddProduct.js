@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loginStatus, getDataUser } from "../../../actions/AuthenticationAction";
-import { adminAddProduct } from "../../../actions/AdminAction";
+import { adminAddProduct, adminUploadProdim } from "../../../actions/AdminAction";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2'
 import { Form } from 'react-bootstrap'
@@ -11,12 +11,15 @@ const AddProduct = () => {
 	const dispatch = useDispatch()
 
 	const { getDataUserResult } = useSelector((state) => state.AuthReducer)
-	const { adminAddProductLoading, adminAddProductResult, adminAddProductError } = useSelector((state) => state.AdminReducer)
+	const { adminAddProductLoading, adminAddProductResult, adminAddProductError,
+		adminUploadProdimLoading, adminUploadProdimResult, adminUploadProdimError } = useSelector((state) => state.AdminReducer)
 
 	useEffect(() => {
 		dispatch(loginStatus())
 		dispatch(getDataUser())
 	}, [dispatch])
+
+	
 
 	useEffect(() => {
 		if(getDataUserResult){
@@ -47,26 +50,153 @@ const AddProduct = () => {
     let [rating, setRating] = useState('')
     let [views, setViews] = useState('')
 
-	// --- Code Here ---
-	const handleSubmit = (event) => {
-        event.preventDefault()
-		// var formElement = document.querySelector("addForm");
-        // console.log(formElement);
-        // console.log('handle submit');
-		let formData = {
-			name, desc, price, stock, expire, weight, category, brand, condition
-		}
-        console.log(formData);
-        dispatch(adminAddProduct(formData))
-        return formData
+	// ----- Start Image -----
+	const fileInputOne = useRef();
+	const fileInputTwo = useRef();
+	const fileInputThree = useRef();
+	const fileInputFour = useRef();
+
+	const inputFileOne = () => {
+        fileInputOne.current.click();
+    }
+	const inputFileTwo = () => {
+        fileInputTwo.current.click();
+    }
+	const inputFileThree = () => {
+        fileInputThree.current.click();
+    }
+	const inputFileFour = () => {
+        fileInputFour.current.click();
     }
 
-	// const handleUploadChange = ((e) => {
-    //     console.log(e.target.files)
-    //     let uploaded = e.target.files
-    //     // setImage(URL.createObjectURL(uploaded))
-    //     // setSaveImage(uploaded)
-    // })
+	let [imageOne, setImageOne] = useState("https://via.placeholder.com/150")
+	let [saveImageOne, setSaveImageOne] = useState(null)
+	let [imageTwo, setImageTwo] = useState("https://via.placeholder.com/150")
+	let [saveImageTwo, setSaveImageTwo] = useState(null)
+	let [imageThree, setImageThree] = useState("https://via.placeholder.com/150")
+	let [saveImageThree, setSaveImageThree] = useState(null)
+	let [imageFour, setImageFour] = useState("https://via.placeholder.com/150")
+	let [saveImageFour, setSaveImageFour] = useState(null)
+
+	useEffect(() => {
+        console.log('use effect')
+        if(adminUploadProdimResult){
+            console.log('upload 1')
+            if(adminUploadProdimResult.status === 200){
+                console.log('upload 1.1')
+                console.log(adminUploadProdimResult)
+                let data = {
+					dataForm: {
+						name,
+						desc,
+						price,
+						stock,
+						expire,
+						weight,
+						category,
+						brand,
+						condition
+					},
+					resultFiles: adminUploadProdimResult.data.resultFiles,
+					imageNames: adminUploadProdimResult.data.imageNames
+                }
+                console.log(data)
+                dispatch(adminAddProduct(data))
+				// handleReset()
+                // setImageOne("https://via.placeholder.com/150")
+                // setSaveImageOne('')
+            }
+        }
+        // console.log(adminUploadProdimResult)
+    }, [adminUploadProdimResult])
+
+    const handleSubmit = (event) => {
+        event.preventDefault()
+        console.log('handle submit');
+        let imageData = new FormData()
+        imageData.append('status', 200)
+		if(saveImageOne !== null){
+			imageData.append('imageOne', saveImageOne)
+		}
+		if(saveImageTwo !== null){
+			imageData.append('imageTwo', saveImageTwo)
+		}
+		if(saveImageThree !== null){
+			imageData.append('imageThree', saveImageThree)
+		}
+		if(saveImageFour !== null){
+			imageData.append('imageFour', saveImageFour)
+		}
+		console.log(imageData)
+		console.log(Object.fromEntries(imageData))
+        dispatch(adminUploadProdim(imageData))
+        return imageData
+    }
+    const handleReset = () => {
+        // event.preventDefault()
+		setName('')
+    	setDesc('')
+    	setPrice('')
+    	setStock('')
+    	setExpire('')
+    	setWeight('')
+    	setCategory('')
+   		setBrand('')
+    	setCondition('')
+		setImageOne("https://via.placeholder.com/150")
+		setImageTwo("https://via.placeholder.com/150")
+		setImageThree("https://via.placeholder.com/150")
+		setImageFour("https://via.placeholder.com/150")
+		setSaveImageOne(null)
+		setSaveImageTwo(null)
+		setSaveImageThree(null)
+		setSaveImageFour(null)
+    }
+
+	const handleUploadOne = ((e) => {
+        console.log(e.target.files[0])
+        let uploadedOne = e.target.files[0]
+        setImageOne(URL.createObjectURL(uploadedOne))
+        console.log(uploadedOne)
+        setSaveImageOne(uploadedOne)
+    })
+	const handleUploadTwo = ((e) => {
+        console.log(e.target.files[0])
+        let uploadedTwo = e.target.files[0]
+        setImageTwo(URL.createObjectURL(uploadedTwo))
+		console.log(uploadedTwo)
+        setSaveImageTwo(uploadedTwo)
+    })
+	const handleUploadThree = ((e) => {
+        console.log(e.target.files[0])
+        let uploadedThree = e.target.files[0]
+        setImageThree(URL.createObjectURL(uploadedThree))
+		console.log(uploadedThree)
+        setSaveImageThree(uploadedThree)
+    })
+	const handleUploadFour = ((e) => {
+        console.log(e.target.files[0])
+        let uploadedFour = e.target.files[0]
+        setImageFour(URL.createObjectURL(uploadedFour))
+		console.log(uploadedFour)
+        setSaveImageFour(uploadedFour)
+    })
+
+	// ----- End Images -----
+
+	// --- Code Here ---
+	// handle submit back-up
+	// const handleSubmit = (event) => {
+    //     event.preventDefault()
+	// 	let formData = {
+	// 		name, desc, price, stock, expire, weight, category, brand, condition
+	// 	}
+    //     console.log(formData);
+    //     dispatch(adminAddProduct(formData))
+    //     return formData
+    // }
+
+	
 
 	useEffect(() => {
 		console.log(adminAddProductResult);
@@ -77,7 +207,7 @@ const AddProduct = () => {
 				icon: 'success', 
 				text: 'Berhasil menambahkan item'
 				});  
-			navigate('/admin/listproduct')
+			// navigate('/admin/listproduct')
 		}		
 	}, [adminAddProductResult, dispatch])
 
@@ -103,7 +233,7 @@ const AddProduct = () => {
 				<div className="col-md-6 grid-margin stretch-card">
 					<div className="card">
 						<div className="card-body">
-							<form className="forms-sample addForm" id="addForm" onSubmit={(event) => handleSubmit(event)}>
+							<form className="forms-sample addForm" id="addForm" onSubmit={(event) => handleSubmit(event)} enctype="multipart/form-data">
 								{/* <Form.Control type="hidden" id="inputProductName" name="UserId" value="1" placeholder="Product Name" hidden/> */}
 								<Form.Group className="my-3">
 									<label className="mb-1" htmlFor="inputProductName">Product Name <small style={{ color: "red" }}>*wajib diisi</small></label>
@@ -141,24 +271,36 @@ const AddProduct = () => {
 									<label className="mb-1" htmlFor="inputCondition">Condition</label>
 									<Form.Control type="text" className="form-control" id="inputCondition" name="condition" placeholder="Condition" value={condition}  onChange={(event) => setCondition(event.target.value)} />
 								</Form.Group>
-								{/* <Form.Group className="my-3">
-									<label className="mb-1" htmlFor="inputTotalSold">Total Sold</label>
-									<Form.Control type="number" className="form-control" id="inputTotalSold" name="totalSold" placeholder="Total Sold" value={totalSold}  onChange={(event) => setTotalSold(event.target.value)} />
+								<Form.Group className="my-3">
+									<label className="mb-1" htmlFor="inputImages">Images <small style={{ color: "red" }}>*opsional (klik gambar jika ingin mengubah/menambahkan gambar produk)</small></label>
+									<div className="row p-0 m-0">
+										<div className="col-3 grid-margin stretch-card">
+											<img src={imageOne} className="img-fluid p-0" alt="..." onClick={inputFileOne}/>
+										</div>
+										<div className="col-3 grid-margin stretch-card">
+											<img src={imageTwo} className="img-fluid p-0" alt="..." onClick={inputFileTwo}/>
+										</div>
+										<div className="col-3 grid-margin stretch-card">
+											<img src={imageThree} className="img-fluid p-0" alt="..." onClick={inputFileThree}/>
+										</div>
+										<div className="col-3 grid-margin stretch-card">
+											<img src={imageFour} className="img-fluid p-0" alt="..." onClick={inputFileFour}/>
+										</div>
+									</div>
 								</Form.Group>
 								<Form.Group className="my-3">
-									<label className="mb-1" htmlFor="inputRating">Rating</label>
-									<Form.Control type="number" className="form-control" id="inputRating" name="rating" placeholder="Rating" value={rating}  onChange={(event) => setRating(event.target.value)} />
+                                    <input className="form-control" type="file" name="fileOne" id="formFileOne" accept="image/*" style={{ "display": "none" }} onChange={(event) => handleUploadOne(event)} ref={fileInputOne} />
+                                    <input className="form-control" type="file" name="fileTwo" id="formFileTwo" accept="image/*" style={{ "display": "none" }} onChange={(event) => handleUploadTwo(event)} ref={fileInputTwo} />
+                                    <input className="form-control" type="file" name="fileThree" id="formFileThree" accept="image/*" style={{ "display": "none" }} onChange={(event) => handleUploadThree(event)} ref={fileInputThree} />
+                                    <input className="form-control" type="file" name="fileFour" id="formFileFour" accept="image/*" style={{ "display": "none" }} onChange={(event) => handleUploadFour(event)} ref={fileInputFour} />
 								</Form.Group>
-								<Form.Group className="my-3">
-									<label className="mb-1" htmlFor="inputViews">Views</label>
-									<Form.Control type="number" className="form-control" id="inputViews" name="views" placeholder="Views" value={views}  onChange={(event) => setViews(event.target.value)} />
-								</Form.Group> */}
-								{/* <Form.Group className="my-3">
-									<label className="mb-1" htmlFor="inputViews">Image Sample</label>
-									<Form.Control type="file" accept="image/*" className="form-control" id="images" name="images[]" placeholder="Views"  multiple onChange={(event) => handleUploadChange(event)}/>
-								</Form.Group> */}
-								<button type="submit" className="btn btn-primary ms-auto me-2 d-flex">Submit</button>
+								
+								<div className="my-3 d-flex">
+
+									<button type="button" className="btn btn-secondary ms-auto me-2 d-flex" onClick={(event) => handleReset(event)}>Reset</button>
+									<button type="submit" className="btn btn-primary ms-0 me-2 d-flex">Submit</button>
 								{/* <button className="btn btn-light">Cancel</button> */}
+								</div>
 							</form>
 						</div>
 					</div>

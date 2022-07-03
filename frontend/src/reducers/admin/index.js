@@ -1,4 +1,4 @@
-import { ADMIN_GET_ALL_PRODUCT,  ADMIN_GET_ALL_ORDER, ADMIN_ADD_PRODUCT, ADMIN_EDIT_PRODUCT, ADMIN_GET_PRODUCT, ADMIN_CONFIRM_ORDER } from "../../actions/AdminAction";
+import { ADMIN_GET_ALL_PRODUCT,  ADMIN_GET_ALL_ORDER, ADMIN_ADD_PRODUCT, ADMIN_EDIT_PRODUCT, ADMIN_GET_PRODUCT, ADMIN_CONFIRM_ORDER, ADMIN_UPLOAD_PRODIM } from "../../actions/AdminAction";
 
 const initialState = {
     adminGetAllProductLoading: false,
@@ -24,6 +24,10 @@ const initialState = {
     adminConfirmLoading: false,
     adminConfirmResult: false,
     adminConfirmError: false,
+    
+    adminUploadProdimLoading: false,
+    adminUploadProdimResult: false,
+    adminUploadProdimError: false,
     
 }
 
@@ -70,6 +74,13 @@ const AdminReducer = (state = initialState, action) => {
                 adminConfirmOrderLoading: action.payload.loading,
                 adminConfirmOrderResult: action.payload.data,
                 adminConfirmOrderError: action.payload.errorMessage
+            }
+        case ADMIN_UPLOAD_PRODIM:
+            return {
+                ...state,
+                adminUploadProdimLoading: action.payload.loading,
+                adminUploadProdimResult: action.payload.data,
+                adminUploadProdimError: action.payload.errorMessage
             }
         default:
             return state;
