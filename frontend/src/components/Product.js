@@ -12,6 +12,16 @@ const Product = ({ product, newArr, loginStatusResult }) => {
     // console.log(user)
     // console.log(newArr)
 
+    useEffect(() => {
+		if(product){
+            console.log(product)
+            if(product.ProductImages.length !== 0){
+                setImage(product.ProductImages[0].filename)
+            }
+        }
+		
+	}, [product])
+
     return (
         <div className="col-3 mb-3">
             <div className="card ">

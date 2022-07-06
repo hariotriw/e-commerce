@@ -829,18 +829,49 @@ class ShoppingController {
             //     console.log(role);
             // }
             // Product All
-            let result = await Product.findAll({
-                include: [{
-                    model: ProductImage
-                },{
-                    model: LineItem,
+            let frontUrl = new URL(`${req.protocol}://${req.get('host')}${req.originalUrl}`)
+            let paramKey = []
+            let paramVal = []
+            for(let pair of frontUrl.searchParams.entries()) {
+                paramKey.push(pair[0])
+                paramVal.push(pair[1])
+            }
+            console.log(paramKey)
+            console.log(paramVal)
+            if(paramKey.length > 0){
+                console.log('key lebih dari 0')
+                let search = paramVal[0]
+                let resultFiltered = await Product.findAll({
+                    where: {
+                        category: search
+                    },
                     include: [{
-                        model: ShoppingCart,
-                        foreignKey: 'ShoppingCartid',
+                        model: ProductImage
+                    },{
+                        model: LineItem,
+                        include: [{
+                            model: ShoppingCart,
+                            foreignKey: 'ShoppingCartid',
+                        }]
                     }]
-                }]
-            })
-            res.json({products: result})
+                })
+                res.json({products: resultFiltered})
+            } else {
+                console.log('key sama dengan 0')
+                let result = await Product.findAll({
+                    include: [{
+                        model: ProductImage
+                    },{
+                        model: LineItem,
+                        include: [{
+                            model: ShoppingCart,
+                            foreignKey: 'ShoppingCartid',
+                        }]
+                    }]
+                })
+                res.json({products: result})
+                
+            }
         } catch (err) {
             res.json(err)
         }

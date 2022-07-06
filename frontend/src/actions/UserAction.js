@@ -11,7 +11,22 @@ export const GET_USER_CART = "GET_USER_CART"
 export const GET_USER_ORDER = "GET_USER_ORDER"
 
 // export const getDataUser = (user) => {
-export const katalogAllProduct = () => {
+export const katalogAllProduct = (selCategory) => {
+    const BASE_URL = 'http://localhost:3001/api/shop/katalog/all?'
+    let newUrl = ''
+    console.log(selCategory)
+    if(selCategory){
+        console.log(selCategory)
+        console.log("ada category")
+        newUrl = `${BASE_URL}category=${selCategory}`
+        console.log(newUrl)
+    } else {
+        console.log(selCategory)
+        console.log("tidak ada category")
+        newUrl = `${BASE_URL}`
+        console.log(newUrl)
+
+    }
     return (dispatch) => {
 
         // loading
@@ -28,7 +43,7 @@ export const katalogAllProduct = () => {
         // get API
         axios({
             method: 'GET',
-            url: 'http://localhost:3001/api/shop/katalog/all',
+            url: newUrl,
             timeout: 120000,
             headers: { 'access-token': access_token}
         })
