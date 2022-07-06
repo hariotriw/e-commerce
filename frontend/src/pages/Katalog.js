@@ -112,6 +112,11 @@ const Katalog = () => {
 		setSelCategory("Accessories")
         dispatch(katalogAllProduct("Accessories"))
     }
+	const bundleBtnHandler = (e) => {
+        // e.preventDefault()
+		setSelCategory("Bundle")
+        dispatch(katalogAllProduct("Bundle"))
+    }
 	const otherBtnHandler = (e) => {
         // e.preventDefault()
 		setSelCategory("Other")
@@ -137,70 +142,106 @@ const Katalog = () => {
 
 
 	return (
-		<div className="container-fluid p-0 ">
-				<div className="row p-0 m-0 mt-4">
-					<div className="col-3 px-3">
-						<div className="card my-3">
-							<div className="card-header">
-								<p className="fw-bold text-center my-auto">Kategori</p>
+		<div className="container-fluid p-0 " style={{ backgroundColor: "#e8f0f2" }}>
+			<div className="row p-0 m-0 mt-4 px-4">
+				<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+					<div class="carousel-inner">
+						<div class="carousel-item active">
+							<img src="http://localhost:3001/public/images/edbg-ps-symbol.jpg" class="d-block w-100 img-fluid" alt="..."/>
+							<div class="carousel-caption d-none d-md-block">
+								<h5 className="text-light shadow bg-dark bg-opacity-75">Boost Your Rank!!</h5>
+								<p className="text-light shadow bg-dark bg-opacity-75">With the newest generation of Console</p>
 							</div>
-							<div className="card-body py-2 fs-6">
-								<div className="row p-0 m-0">
-									<p className="fw-bold py-2 my-0">Console</p>
-									<hr className="p-0 m-2" />
-									<Button className="btn btn-secondary py-2 my-2" onClick={(e) => allProductBtnHandler(e)}>Semua Barang</Button>
-									{/* <hr className="p-0 m-2" /> */}
-									<Button className="btn btn-secondary py-2 my-2" onClick={(e) => consoleBtnHandler(e)}>Console</Button>
-									{/* <hr className="p-0 m-2" /> */}
-									<Button className="btn btn-secondary py-2 my-2" onClick={(e) => gameBtnHandler(e)}>Video Games</Button>
-									{/* <hr className="p-0 m-2" /> */}
-									<Button className="btn btn-secondary py-2 my-2" onClick={(e) => accessoriesBtnHandler(e)}>Aksesoris</Button>
-									{/* <hr className="p-0 m-2" /> */}
-									<Button className="btn btn-secondary py-2 my-2" onClick={(e) => otherBtnHandler(e)}>Lainnya</Button>
-									<hr className="p-0 m-2" />
-								</div>								
+						</div>
+						<div class="carousel-item">
+							<img src="http://localhost:3001/public/images/edbg-ps5.png" class="d-block w-100  img-fluid" alt="..."/>
+							<div class="carousel-caption d-none d-md-block">
+								<h5 className="text-light shadow bg-dark bg-opacity-75">Best Sales!!</h5>
+								<p className="text-light shadow bg-dark bg-opacity-75">Playstation 5 Digital Version</p>
+							</div>
+						</div>
+						<div class="carousel-item">
+							<img src="http://localhost:3001/public/images/edbg-anticipated-games.jpg" class="d-block w-100  img-fluid" alt="..."/>
+							<div class="carousel-caption d-none d-md-block">
+								<h5 className="text-light shadow bg-dark bg-opacity-75">Coming Soon!!!</h5>
+								<p className="text-light shadow bg-dark bg-opacity-75" style={{}}>The Most Anticipated Games by Gamers</p>
 							</div>
 						</div>
 					</div>
-					<div className="col-9">
-                        <div className="row p-0 m-0">
-                            <div className="container-fluid p-0 m-0"> 
-								<div className="row p-0 m-0">
-									<p className="fw-bold py-2 my-0">{selCategory ? selCategory : "Semua Barang"}</p>
-									<hr className="p-0 m-2 mb-5" />
+					<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+						<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+						<span class="visually-hidden">Previous</span>
+					</button>
+					<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+						<span class="carousel-control-next-icon" aria-hidden="true"></span>
+						<span class="visually-hidden">Next</span>
+					</button>
+				</div>
+			</div>
+			<div className="row p-0 m-0 mt-4">
+				<div className="col-3 px-3">
+					<div className="row p-0 m-0 justify-content-center">
+						<div className="col-10 p-0 m-0">
+							<div className="card my-3">
+								<div className="card-header">
+									<p className="fw-bold text-center my-auto">Kategori</p>
 								</div>
-                                <div className="row mx-auto mb-2">
-									{console.log(katalogAllProductResult)}
-                                    { katalogAllProductResult ? 
-                                        katalogAllProductResult.products.map(product => {
-                                            // console.log(getDataUserResult);
-                                            return (
-                                                loginStatusResult.status === true ?
-                                                <>
-                                                
-                                                <ProductLogin product={product} user={getDataUserResult} newArr={newArr} loginStatusResult={loginStatusResult} key={product.id} />
-                                                </>
-                                                :
+								<div className="card-body py-2 fs-6">
+									<div className="row p-0 m-0">
+										<p className="fw-bold py-2 my-0">Produk</p>
+										<hr className="p-0 m-2" />
+										<Button className="btn btn-secondary py-2 my-2" onClick={(e) => allProductBtnHandler(e)}>Semua Barang</Button>
+										{/* <hr className="p-0 m-2" /> */}
+										<Button className="btn btn-secondary py-2 my-2" onClick={(e) => consoleBtnHandler(e)}> Console</Button>
+										{/* <hr className="p-0 m-2" /> */}
+										<Button className="btn btn-secondary py-2 my-2" onClick={(e) => gameBtnHandler(e)}>Video Games</Button>
+										{/* <hr className="p-0 m-2" /> */}
+										<Button className="btn btn-secondary py-2 my-2" onClick={(e) => accessoriesBtnHandler(e)}> Aksesoris</Button>
+										{/* <hr className="p-0 m-2" /> */}
+										<Button className="btn btn-secondary py-2 my-2" onClick={(e) => bundleBtnHandler(e)}>Bundle</Button>
+										{/* <hr className="p-0 m-2" /> */}
+										<Button className="btn btn-secondary py-2 my-2" onClick={(e) => otherBtnHandler(e)}>Lainnya</Button>
+										<hr className="p-0 m-2" />
+									</div>								
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div className="col-9">
+					<div className="row p-0 m-0">
+						<div className="container-fluid p-0 m-0"> 
+							<div className="row p-0 m-0">
+								<p className="fw-bold py-2 my-0">{selCategory ? selCategory : "Semua Barang"}</p>
+								<hr className="p-0 m-2 mb-5" />
+							</div>
+							<div className="row mx-auto mb-2">
+								{console.log(katalogAllProductResult)}
+								{ katalogAllProductResult ? 
+									katalogAllProductResult.products.length !== 0 ?
+										katalogAllProductResult.products.map(product => {
+											// console.log(getDataUserResult);
+											return (
+												loginStatusResult.status === true ?
 												<>
-                                                <Product product={product} key={product.id} />
-                                                <Product product={product} key={product.id} />
-                                                <Product product={product} key={product.id} />
-                                                <Product product={product} key={product.id} />
-                                                <Product product={product} key={product.id} />
-                                                <Product product={product} key={product.id} />
-                                                <Product product={product} key={product.id} />
+													<ProductLogin product={product} user={getDataUserResult} newArr={newArr} loginStatusResult={loginStatusResult} key={product.id} />
 												</>
-                                            )
-                                        }) : katalogAllProductLoading ? 
-                                            <p className="text-center"> loading data . . .</p>
-                                                : katalogAllProductError ? katalogAllProductError : 'data kosong'
-                                    }
-                                </div>
-                            </div>
+												:
+												<>
+													<Product product={product} key={product.id} />
+												</>
+											)
+										})
+									: <p className="text-center"> produk dengan kategory <b>{selCategory} </b>kosong...</p> : katalogAllProductLoading ? 
+										<p className="text-center"> loading data . . .</p>
+											: katalogAllProductError ? katalogAllProductError : 'data kosong'
+								}
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
+		</div>
 	);
 }
 

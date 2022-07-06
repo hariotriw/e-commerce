@@ -40,9 +40,9 @@ const Navbar = () => {
 
     return (
         <>
-            <nav className='navbar navbar-expand-lg navbar-light bg-light'>
+            <nav className='navbar navbar-expand-lg navbar-dark' style={{ backgroundColor: "#333333" }}>
                 <div className='container-fluid'>
-                    <Link to="/" className='navbar-brand'>Codibook</Link>
+                    <Link to="/" className='navbar-brand border border-light px-3 '><i class="bi bi-controller"></i> Console Store</Link>
                     <button type='button' className='navbar-toggler' data-bs-toggle='collapse' data-bs-target='#navbarCollapse'>
                         <span className='navbar-toggler-icon'></span>
                     </button>

@@ -52,9 +52,9 @@ const ListProduct = () => {
 		<div>
 			<div className="row pt-5">
 				<div className="col-12 d-flex">
-					<h3 className="page-title"> Book List </h3>
+					<h3 className="page-title"> Produk List </h3>
 					<div className="button d-flex ms-auto me-0 pe-3">
-						<Button variant="outline-primary" href="/admin/addproduct">+ Tambah Buku</Button>
+						<Button variant="outline-primary" href="/admin/addproduct">+ Tambah Produk</Button>
 					</div>
 				</div>
 			</div>
@@ -113,10 +113,10 @@ const ListProduct = () => {
 														<Link className="no-link" to={`/admin/editproduct/${product.id}`}>
 															<span>edit</span>
 														</Link>
-														|
+														{/* |
 														<Link className="no-link" to={`/admin/deleteproduct`}>
 															<span>hapus</span>
-														</Link>
+														</Link> */}
 													</td>
 												</tr>
 												)}

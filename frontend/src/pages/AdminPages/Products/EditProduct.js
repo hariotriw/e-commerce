@@ -151,7 +151,15 @@ const EditProduct = () => {
 								</Form.Group>
 								<Form.Group className="my-3">
 									<label className="mb-1" htmlFor="inputCategory">Category</label>
-									<Form.Control type="text" className="form-control" id="inputCategory" name="category" placeholder="Category" value={category}  onChange={(event) => setCategory(event.target.value)} />
+									{/* <Form.Control type="text" className="form-control" id="inputCategory" name="category" placeholder="Category" value={category}  onChange={(event) => setCategory(event.target.value)} /> */}
+									<select name="category" class="form-select " aria-label=".form-select-sm example" required value={category}  onChange={(event) => setCategory(event.target.value)}>
+										<option value="" selected disabled>Masukkan kategori produk...</option>
+										<option value="Console">Console</option>
+										<option value="Game">Video Games</option>
+										<option value="Accessories">Aksesoris</option>
+										<option value="Bundle">Bundle</option>
+										<option value="Other">Lainnya..</option>
+									</select>
 								</Form.Group>
 								<Form.Group className="my-3">
 									<label className="mb-1" htmlFor="inputBrand">Brand</label>
@@ -161,22 +169,6 @@ const EditProduct = () => {
 									<label className="mb-1" htmlFor="inputCondition">Condition</label>
 									<Form.Control type="text" className="form-control" id="inputCondition" name="condition" placeholder="Condition" value={condition}  onChange={(event) => setCondition(event.target.value)} />
 								</Form.Group>
-								{/* <Form.Group className="my-3">
-									<label className="mb-1" htmlFor="inputTotalSold">Total Sold</label>
-									<Form.Control type="number" className="form-control" id="inputTotalSold" name="totalSold" placeholder="Total Sold" value={totalSold}  onChange={(event) => setTotalSold(event.target.value)} />
-								</Form.Group>
-								<Form.Group className="my-3">
-									<label className="mb-1" htmlFor="inputRating">Rating</label>
-									<Form.Control type="number" className="form-control" id="inputRating" name="rating" placeholder="Rating" value={rating}  onChange={(event) => setRating(event.target.value)} />
-								</Form.Group>
-								<Form.Group className="my-3">
-									<label className="mb-1" htmlFor="inputViews">Views</label>
-									<Form.Control type="number" className="form-control" id="inputViews" name="views" placeholder="Views" value={views}  onChange={(event) => setViews(event.target.value)} />
-								</Form.Group> */}
-								{/* <Form.Group className="my-3">
-									<label className="mb-1" htmlFor="inputViews">Image Sample</label>
-									<Form.Control type="file" accept="image/*" className="form-control" id="images" name="images[]" placeholder="Views"  multiple onChange={(event) => handleUploadChange(event)}/>
-								</Form.Group> */}
 								<button type="submit" className="btn btn-primary ms-auto me-2 d-flex">Submit</button>
 								{/* <button className="btn btn-light">Cancel</button> */}
 							</form>

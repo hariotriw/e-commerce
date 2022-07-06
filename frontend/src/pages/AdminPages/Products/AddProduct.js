@@ -207,7 +207,7 @@ const AddProduct = () => {
 				icon: 'success', 
 				text: 'Berhasil menambahkan item'
 				});  
-			// navigate('/admin/listproduct')
+			navigate('/admin/listproduct')
 		}		
 	}, [adminAddProductResult, dispatch])
 
@@ -261,7 +261,15 @@ const AddProduct = () => {
 								</Form.Group>
 								<Form.Group className="my-3">
 									<label className="mb-1" htmlFor="inputCategory">Category</label>
-									<Form.Control type="text" className="form-control" id="inputCategory" name="category" placeholder="Category" value={category}  onChange={(event) => setCategory(event.target.value)} />
+									{/* <Form.Control type="text" className="form-control" id="inputCategory" name="category" placeholder="Category" value={category}  onChange={(event) => setCategory(event.target.value)} /> */}
+									<select name="category" class="form-select " aria-label=".form-select-sm example" required value={category}  onChange={(event) => setCategory(event.target.value)}>
+										<option value="" selected disabled>Masukkan kategori produk...</option>
+										<option value="Console">Console</option>
+										<option value="Game">Video Games</option>
+										<option value="Accessories">Aksesoris</option>
+										<option value="Bundle">Bundle</option>
+										<option value="Other">Lainnya..</option>
+									</select>
 								</Form.Group>
 								<Form.Group className="my-3">
 									<label className="mb-1" htmlFor="inputBrand">Brand</label>
